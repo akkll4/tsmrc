@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | TSMRC 2026 - Tanta Student Medical Research Conference</title>
+    <meta name="description" content="Register for TSMRC 2026 as an attendee or submit your research abstract. Join Egypt's premier medical AI conference.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <link rel="stylesheet" href="css/Register.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">
+                    <span class="logo-title">TSMRC 2026</span>
+                    <span class="logo-subtitle">Tanta University</span>
+                </div>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#tracks">Tracks</a></li>
+                <li><a href="agenda.html">Agenda</a></li>
+                <li><a href="register.html" class="active">Register</a></li>
+            </ul>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Registration</span>
+            </div>
+            <h1>Join TSMRC 2026</h1>
+            <p>Register as an attendee or submit your research abstract</p>
+        </div>
+    </section>
+
+    <!-- Registration Container -->
+    <div class="registration-container">
+        <!-- Tab Switcher -->
+        <div class="tab-switcher">
+            <button class="tab-btn active" data-tab="attendee">
+                <i class="fas fa-user-plus"></i>
+                <span>Register as Attendee</span>
+            </button>
+            <button class="tab-btn" data-tab="abstract">
+                <i class="fas fa-file-alt"></i>
+                <span>Submit Abstract</span>
+                <span class="badge">Optional</span>
+            </button>
+        </div>
+
+        <!-- Attendee Registration Form -->
+        <div class="form-card active" id="attendeeForm">
+            <div class="form-header">
+                <h2><i class="fas fa-user-graduate"></i> Attendee Registration</h2>
+                <p>Secure your spot at Egypt's premier medical AI conference</p>
+            </div>
+
+            <form id="attendeeRegistrationForm">
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3 class="form-section-title">
+                        <i class="fas fa-user"></i>
+                        Personal Information
+                    </h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">
+                                First Name <span class="required">*</span>
+                            </label>
+                            <input type="text" class="form-input" name="firstName" required placeholder="Enter your first name">
+                            <div class="form-error">Please enter your first name</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Last Name <span class="required">*</span>
+                            </label>
+                            <input type="text" class="form-input" name="lastName" required placeholder="Enter your last name">
+                            <div class="form-error">Please enter your last name</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Email Address <span class="required">*</span>
+                            </label>
+                            <input type="email" class="form-input" name="email" required placeholder="your.email@example.com">
+                            <div class="form-error">Please enter a valid email address</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Phone Number <span class="required">*</span>
+                            </label>
+                            <input type="tel" class="form-input" name="phone" required placeholder="+20 1XX XXX XXXX">
+                            <div class="form-error">Please enter a valid phone number</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                WhatsApp Number
+                            </label>
+                            <input type="tel" class="form-input" name="whatsapp" placeholder="+20 1XX XXX XXXX">
+                            <div class="form-hint">For conference updates and communication</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Nationality <span class="required">*</span>
+                            </label>
+                            <select class="form-select" name="nationality" required>
+                                <option value="">Select nationality</option>
+                                <option value="Egypt" selected>Egypt</option>
+                                <option value="Saudi Arabia">Saudi Arabia</option>
+                                <option value="UAE">UAE</option>
+                                <option value="Kuwait">Kuwait</option>
+                                <option value="Qatar">Qatar</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="form-error">Please select your nationality</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Information -->
+                <div class="form-section">
+                    <h3 class="form-section-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Academic Information
+                    </h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">
+                                University <span class="required">*</span>
+                            </label>
+                            <select class="form-select" name="university" required>
+                                <option value="">Select your university</option>
+                                <option value="Tanta University" selected>Tanta University</option>
+                                <option value="Cairo University">Cairo University</option>
+                                <option value="Ain Shams University">Ain Shams University</option>
+                                <option value="Alexandria University">Alexandria University</option>
+                                <option value="Mansoura University">Mansoura University</option>
+                                <option value="Zagazig University">Zagazig University</option>
+                                <option value="Assiut University">Assiut University</option>
+                                <option value="Minia University">Minia University</option>
+                                <option value="Suez Canal University">Suez Canal University</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="form-error">Please select your university</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Faculty <span class="required">*</span>
+                            </label>
+                            <select class="form-select" name="faculty" required>
+                                <option value="">Select your faculty</option>
+                                <option value="Medicine" selected>Faculty of Medicine</option>
+                                <option value="Dentistry">Faculty of Dentistry</option>
+                                <option value="Pharmacy">Faculty of Pharmacy</option>
+                                <option value="Nursing">Faculty of Nursing</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="form-error">Please select your faculty</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Academic Year <span class="required">*</span>
+                            </label>
+                            <select class="form-select" name="academicYear" required>
+                                <option value="">Select academic year</option>
+                                <option value="1st Year">1st Year</option>
+                                <option value="2nd Year">2nd Year</option>
+                                <option value="3rd Year">3rd Year</option>
+                                <option value="4th Year">4th Year</option>
+                                <option value="5th Year">5th Year</option>
+                                <option value="6th Year">6th Year</option>
+                                <option value="Intern">Intern</option>
+                                <option value="Graduate">Graduate</option>
+                            </select>
+                            <div class="form-error">Please select your academic year</div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="form-section">
+                    <h3 class="form-section-title">
+                        <i class="fas fa-info-circle"></i>
+                        Additional Information
+                    </h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                How did you hear about TSMRC 2026?
+                            </label>
+                            <select class="form-select" name="hearAbout">
+                                <option value="">Select an option</option>
+                                <option value="Social Media">Social Media (Facebook, Instagram, etc.)</option>
+                                <option value="University Email">University Email</option>
+                                <option value="Friends">Friends/Colleagues</option>
+                                <option value="Professors">Professors/Doctors</option>
+                                <option value="Website">Official Website</option>
+                                <option value="Poster">Poster/Flyer</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+
+
+                        <div class="form-group full-width">
+                            <label class="form-checkbox">
+                                <input type="checkbox" name="terms" required>
+                                <span class="form-checkbox-label">
+                                    I agree to the <a href="#" style="color: var(--primary); text-decoration: underline;">terms and conditions</a> and <a href="#" style="color: var(--primary); text-decoration: underline;">privacy policy</a> of TSMRC 2026 <span class="required">*</span>
+                                </span>
+                            </label>
+                            <div class="form-error">You must agree to the terms and conditions</div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-checkbox">
+                                <input type="checkbox" name="newsletter">
+                                <span class="form-checkbox-label">
+                                    I would like to receive updates about future conferences and events
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">
+                        <i class="fas fa-check-circle"></i>
+                        Complete Registration
+                    </span>
+                    <div class="spinner"></div>
+                </button>
+            </form>
+        </div>
+
+        <!-- Abstract Submission Form -->
+        <div class="form-card" id="abstractForm">
+            <div class="form-header">
+                <h2><i class="fas fa-file-medical"></i> Abstract Submission</h2>
+                <p>Share your research with the medical community</p>
+            </div>
+
+            <form id="abstractSubmissionForm">
+                <!-- Abstract Details -->
+                <div class="form-section">
+                    <h3 class="form-section-title">
+                        <i class="fas fa-book-medical"></i>
+                        Abstract Details
+                    </h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                Abstract Title <span class="required">*</span>
+                            </label>
+                            <input type="text" class="form-input" name="title" required placeholder="Enter your research title">
+                            <div class="form-error">Please enter your abstract title</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Research Track <span class="required">*</span>
+                            </label>
+                            <select class="form-select" name="track" required>
+                                <option value="">Select research track</option>
+                                <option value="AI in Medical Imaging">AI in Medical Imaging</option>
+                                <option value="Drug Discovery & Development">Drug Discovery & Development</option>
+                                <option value="Clinical Decision Support">Clinical Decision Support</option>
+                                <option value="Cardiovascular AI">Cardiovascular AI</option>
+                                <option value="Neuroscience & AI">Neuroscience & AI</option>
+                                <option value="Digital Health & Telemedicine">Digital Health & Telemedicine</option>
+                            </select>
+                            <div class="form-error">Please select a research track</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Study Type <span class="required">*</span>
+                            </label>
+                            <select class="form-select" name="studyType" required>
+                                <option value="">Select study type</option>
+                                <option value="Original Research">Original Research</option>
+                                <option value="Systematic Review">Systematic Review</option>
+                                <option value="Meta-Analysis">Meta-Analysis</option>
+                                <option value="Case Report">Case Report</option>
+                                <option value="Case Series">Case Series</option>
+                                <option value="Literature Review">Literature Review</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="form-error">Please select study type</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Presentation Preference <span class="required">*</span>
+                            </label>
+                            <select class="form-select" name="presentationType" required>
+                                <option value="">Select preference</option>
+                                <option value="Oral Presentation">Oral Presentation</option>
+                                <option value="Poster Presentation">Poster Presentation</option>
+                                <option value="Either">Either (Committee Decision)</option>
+                            </select>
+                            <div class="form-error">Please select presentation preference</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Keywords <span class="required">*</span>
+                            </label>
+                            <input type="text" class="form-input" name="keywords" required placeholder="e.g., AI, Radiology, Diagnosis">
+                            <div class="form-hint">Separate keywords with commas (3-5 keywords)</div>
+                            <div class="form-error">Please enter keywords</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Abstract Content -->
+                <div class="form-section">
+                    <h3 class="form-section-title">
+                        <i class="fas fa-edit"></i>
+                        Abstract Content
+                    </h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                Background/Introduction <span class="required">*</span>
+                            </label>
+                            <textarea class="form-textarea" name="background" required placeholder="Provide context and rationale for your study (max 300 words)"></textarea>
+                            <div class="form-hint">Max 300 words</div>
+                            <div class="form-error">Please provide background information</div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                Methods <span class="required">*</span>
+                            </label>
+                            <textarea class="form-textarea" name="methods" required placeholder="Describe your study design, participants, and methodology (max 300 words)"></textarea>
+                            <div class="form-hint">Max 300 words</div>
+                            <div class="form-error">Please describe your methods</div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                Results <span class="required">*</span>
+                            </label>
+                            <textarea class="form-textarea" name="results" required placeholder="Present your key findings (max 300 words)"></textarea>
+                            <div class="form-hint">Max 300 words</div>
+                            <div class="form-error">Please present your results</div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                Conclusion <span class="required">*</span>
+                            </label>
+                            <textarea class="form-textarea" name="conclusion" required placeholder="Summarize your main conclusions and implications (max 200 words)"></textarea>
+                            <div class="form-hint">Max 200 words</div>
+                            <div class="form-error">Please provide a conclusion</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Authors Information -->
+                <div class="form-section">
+                    <h3 class="form-section-title">
+                        <i class="fas fa-users"></i>
+                        Authors Information
+                    </h3>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">
+                                Corresponding Author Name <span class="required">*</span>
+                            </label>
+                            <input type="text" class="form-input" name="correspondingName" required placeholder="Full name">
+                            <div class="form-error">Please enter corresponding author name</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Corresponding Author Email <span class="required">*</span>
+                            </label>
+                            <input type="email" class="form-input" name="correspondingEmail" required placeholder="email@example.com">
+                            <div class="form-error">Please enter a valid email</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Corresponding Author Phone <span class="required">*</span>
+                            </label>
+                            <input type="tel" class="form-input" name="correspondingPhone" required placeholder="+20 1XX XXX XXXX">
+                            <div class="form-error">Please enter phone number</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Corresponding Author University <span class="required">*</span>
+                            </label>
+                            <input type="text" class="form-input" name="correspondingUniversity" required placeholder="University name">
+                            <div class="form-error">Please enter university</div>
+                        </div>
+                    </div>
+
+                    <!-- Co-authors -->
+                    <div class="co-authors-container">
+                        <label class="form-label">Co-authors (Optional)</label>
+                        <div id="coAuthorsList"></div>
+                        <button type="button" class="add-co-author-btn" id="addCoAuthorBtn">
+                            <i class="fas fa-plus"></i>
+                            Add Co-author
+                        </button>
+                    </div>
+                </div>
+
+                <!-- File Upload & Ethics -->
+                <div class="form-section">
+                    <h3 class="form-section-title">
+                        <i class="fas fa-upload"></i>
+                        File Upload & Ethics
+                    </h3>
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                Upload Abstract Document <span class="required">*</span>
+                            </label>
+                            <div class="file-upload" id="fileUpload">
+                                <input type="file" id="fileInput" name="abstractFile" accept=".pdf,.doc,.docx" required>
+                                <div class="file-upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <div class="file-upload-text">
+                                    Drag & drop your file here or click to browse
+                                </div>
+                                <div class="file-upload-hint">
+                                    PDF, DOC, or DOCX (Max 10MB)
+                                </div>
+                            </div>
+                            <div class="file-preview" id="filePreview">
+                                <div class="file-preview-icon">
+                                    <i class="fas fa-file-pdf"></i>
+                                </div>
+                                <div class="file-preview-info">
+                                    <div class="file-preview-name" id="fileName"></div>
+                                    <div class="file-preview-size" id="fileSize"></div>
+                                </div>
+                                <button type="button" class="file-preview-remove" id="fileRemove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="form-error">Please upload your abstract document</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Ethics Approval <span class="required">*</span>
+                            </label>
+                            <select class="form-select" name="ethicsApproval" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes - Approved</option>
+                                <option value="No">No - Not Required</option>
+                                <option value="Pending">Pending</option>
+                            </select>
+                            <div class="form-error">Please select ethics approval status</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                Ethics Approval Number
+                            </label>
+                            <input type="text" class="form-input" name="ethicsNumber" placeholder="Enter approval number if applicable">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-label">
+                                Conflict of Interest Statement <span class="required">*</span>
+                            </label>
+                            <textarea class="form-textarea" name="conflictOfInterest" required placeholder="Declare any conflicts of interest or state 'None'"></textarea>
+                            <div class="form-error">Please provide conflict of interest statement</div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="form-checkbox">
+                                <input type="checkbox" name="abstractTerms" required>
+                                <span class="form-checkbox-label">
+                                    I confirm that this abstract is original, has not been published elsewhere, and all authors have approved the submission <span class="required">*</span>
+                                </span>
+                            </label>
+                            <div class="form-error">You must confirm the submission terms</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">
+                        <i class="fas fa-paper-plane"></i>
+                        Submit Abstract
+                    </span>
+                    <div class="spinner"></div>
+                </button>
+            </form>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="quick-links">
+            <a href="agenda.html" class="quick-link-card">
+                <div class="quick-link-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3 class="quick-link-title">View Agenda</h3>
+                <p class="quick-link-text">
+                    Explore the complete conference schedule, speaker sessions, and workshop timings
+                </p>
+            </a>
+
+            <a href="venue.html" class="quick-link-card">
+                <div class="quick-link-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3 class="quick-link-title">Venue & Location</h3>
+                <p class="quick-link-text">
+                    Find detailed information about the conference venue, directions, and accommodations
+                </p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <div class="toast-content">
+            <div class="toast-title">Success!</div>
+            <div class="toast-message">Your registration has been submitted.</div>
+        </div>
+        <button class="toast-close" id="toastClose">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">T</div>
+                    <div class="logo-text">
+                        <span class="logo-title">TSMRC 2026</span>
+                        <span class="logo-subtitle">Tanta University</span>
+                    </div>
+                </a>
+                <p>
+                    Empowering the next generation of medical professionals through 
+                    research, innovation, and the integration of artificial intelligence in healthcare.
+                </p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="index.html#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                    <li><a href="agenda.html"><i class="fas fa-chevron-right"></i> Agenda</a></li>
+                    <li><a href="register.html"><i class="fas fa-chevron-right"></i> Register</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="register.html#abstract"><i class="fas fa-chevron-right"></i> Submit Abstract</a></li>
+                    <li><a href="venue.html"><i class="fas fa-chevron-right"></i> Venue</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Guidelines</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title">Contact</h4>
+                <ul class="footer-links">
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Tanta University, Egypt
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:info@tsmrc.edu.eg">
+                            <i class="fas fa-envelope"></i>
+                            info@tsmrc.edu.eg
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+201234567890">
+                            <i class="fas fa-phone"></i>
+                            +20 123 456 7890
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tanta Student Medical Research Conference. All rights reserved. | Faculty of Medicine, Tanta University</p>
+        </div>
+    </footer>
+
+
+    <script src="js/Register.js"></script>
+
+
+</body>
+</html>

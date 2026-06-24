@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda | TSMRC 2026 - Tanta Student Medical Research Conference</title>
+    <meta name="description" content="View the complete conference agenda, sessions, speakers, and workshop schedules for TSMRC 2026.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/agenda.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">T</div>
+                <div class="logo-text">
+                    <span class="logo-title">TSMRC 2026</span>
+                    <span class="logo-subtitle">Tanta University</span>
+                </div>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#tracks">Tracks</a></li>
+                <li><a href="agenda.html" class="active">Agenda</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <span>Agenda</span>
+            </div>
+            <h1>Conference Agenda</h1>
+            <p>Explore the complete schedule of sessions, workshops, and presentations</p>
+        </div>
+        <div class="header-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </section>
+
+    <!-- Agenda Controls -->
+    <section class="agenda-controls">
+        <div class="container">
+            <!-- Day Tabs -->
+            <div class="day-tabs">
+                <button class="day-tab active" data-day="all">
+                    <i class="fas fa-calendar-day"></i>
+                    <span>All Days</span>
+                </button>
+                <button class="day-tab" data-day="workshop">
+                    <i class="fas fa-tools"></i>
+                    <span>Workshop</span>
+                    <span class="day-date">Sep 4</span>
+                </button>
+                <button class="day-tab" data-day="day1">
+                    <i class="fas fa-sun"></i>
+                    <span>Day 1</span>
+                    <span class="day-date">Sep 5</span>
+                </button>
+                <button class="day-tab" data-day="day2">
+                    <i class="fas fa-sun"></i>
+                    <span>Day 2</span>
+                    <span class="day-date">Sep 6</span>
+                </button>
+            </div>
+
+            <!-- Filters & Search -->
+            <div class="agenda-filters">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search sessions, topics, or speakers...">
+                </div>
+                
+                <div class="filter-dropdowns">
+                    <select id="trackFilter" class="filter-select">
+                        <option value="all">All Tracks</option>
+                        <option value="andrology">Andrology</option>
+                        <option value="endo-urology">Endo-Urology</option>
+                        <option value="oncology">Uro-Oncology</option>
+                        <option value="pediatric">Pediatric Urology</option>
+                        <option value="workshop">Workshop</option>
+                        <option value="ceremony">Ceremony</option>
+                    </select>
+
+                    <select id="typeFilter" class="filter-select">
+                        <option value="all">All Types</option>
+                        <option value="lecture">Lecture</option>
+                        <option value="workshop">Workshop</option>
+                        <option value="live-surgery">Live Surgery</option>
+                        <option value="video">Video Presentation</option>
+                        <option value="panel">Panel Discussion</option>
+                    </select>
+                </div>
+
+                <button class="btn-download-pdf" id="downloadPdfBtn">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Download PDF</span>
+                </button>
+            </div>
+
+            <!-- Active Filters Display -->
+            <div class="active-filters" id="activeFilters" style="display: none;">
+                <span class="filter-label">Active Filters:</span>
+                <div class="filter-tags" id="filterTags"></div>
+                <button class="clear-filters" id="clearFilters">
+                    <i class="fas fa-times"></i>
+                    Clear All
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agenda Content -->
+    <section class="agenda-content">
+        <div class="container">
+            <!-- Workshop Day -->
+            <div class="agenda-day" id="workshop" data-day="workshop">
+                <div class="day-header">
+                    <div class="day-title">
+                        <i class="fas fa-tools"></i>
+                        <h2>Pre-Congress Workshop</h2>
+                    </div>
+                    <div class="day-info">
+                        <span class="day-location"><i class="fas fa-map-marker-alt"></i> Tanta Urology & Nephrology Hospital</span>
+                        <span class="day-date-display"><i class="fas fa-calendar"></i> September 4, 2024</span>
+                    </div>
+                </div>
+
+                <div class="sessions-grid">
+                    <!-- Surgical Workshop -->
+                    <div class="session-card" data-track="workshop" data-type="live-surgery">
+                        <div class="session-time">
+                            <i class="fas fa-clock"></i>
+                            <span>09:00 - 11:00</span>
+                        </div>
+                        <div class="session-content">
+                            <div class="session-badge workshop">Workshop</div>
+                            <h3 class="session-title">Retrograde Intrarenal Surgery (RIRS)</h3>
+                            <p class="session-presenter">
+                                <i class="fas fa-user-md"></i>
+                                Prof. Abdelhamid Elbahnasy
+                            </p>
+                            <p class="session-description">
+                                Advanced techniques in flexible ureteroscopy for renal stone management
+                            </p>
+                        </div>
+                        <div class="session-actions">
+                            <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                <i class="fas fa-info-circle"></i>
+                                Details
+                            </button>
+                            <button class="btn-add-calendar">
+                                <i class="fas fa-calendar-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Live Surgery -->
+                    <div class="session-card" data-track="workshop" data-type="live-surgery">
+                        <div class="session-time">
+                            <i class="fas fa-clock"></i>
+                            <span>11:00 - 13:00</span>
+                        </div>
+                        <div class="session-content">
+                            <div class="session-badge workshop">Live Surgery</div>
+                            <h3 class="session-title">Bipolar Transurethral Enucleation of The Prostate</h3>
+                            <p class="session-presenter">
+                                <i class="fas fa-user-md"></i>
+                                Prof. Mohamed Kamal Omar
+                            </p>
+                            <p class="session-description">
+                                Live demonstration of bipolar enucleation technique for BPH treatment
+                            </p>
+                        </div>
+                        <div class="session-actions">
+                            <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                <i class="fas fa-info-circle"></i>
+                                Details
+                            </button>
+                            <button class="btn-add-calendar">
+                                <i class="fas fa-calendar-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Laparoscopic Workshop -->
+                    <div class="session-card" data-track="workshop" data-type="workshop">
+                        <div class="session-time">
+                            <i class="fas fa-clock"></i>
+                            <span>14:00 - 16:00</span>
+                        </div>
+                        <div class="session-content">
+                            <div class="session-badge workshop">Workshop</div>
+                            <h3 class="session-title">Laparoscopic Pyeloplasty</h3>
+                            <p class="session-presenter">
+                                <i class="fas fa-user-md"></i>
+                                Prof. Salah Nagla
+                            </p>
+                            <p class="session-description">
+                                Minimally invasive surgical correction of ureteropelvic junction obstruction
+                            </p>
+                        </div>
+                        <div class="session-actions">
+                            <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                <i class="fas fa-info-circle"></i>
+                                Details
+                            </button>
+                            <button class="btn-add-calendar">
+                                <i class="fas fa-calendar-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Penile Prosthesis -->
+                    <div class="session-card" data-track="workshop" data-type="live-surgery">
+                        <div class="session-time">
+                            <i class="fas fa-clock"></i>
+                            <span>16:00 - 18:00</span>
+                        </div>
+                        <div class="session-content">
+                            <div class="session-badge workshop">Live Surgery</div>
+                            <h3 class="session-title">Penile Prosthesis Insertion</h3>
+                            <p class="session-presenter">
+                                <i class="fas fa-user-md"></i>
+                                Prof. Abdelrahman Zahran
+                            </p>
+                            <p class="session-description">
+                                Surgical techniques for inflatable penile prosthesis implantation
+                            </p>
+                        </div>
+                        <div class="session-actions">
+                            <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                <i class="fas fa-info-circle"></i>
+                                Details
+                            </button>
+                            <button class="btn-add-calendar">
+                                <i class="fas fa-calendar-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 1 -->
+            <div class="agenda-day" id="day1" data-day="day1">
+                <div class="day-header">
+                    <div class="day-title">
+                        <i class="fas fa-sun"></i>
+                        <h2>Day 1 - Scientific Sessions</h2>
+                    </div>
+                    <div class="day-info">
+                        <span class="day-location"><i class="fas fa-map-marker-alt"></i> Tolip Alexandria Hotel</span>
+                        <span class="day-date-display"><i class="fas fa-calendar"></i> September 5, 2024</span>
+                    </div>
+                </div>
+
+                <!-- Andrology Session -->
+                <div class="session-track" data-track="andrology">
+                    <div class="track-header">
+                        <div class="track-badge andrology">
+                            <i class="fas fa-venus-mars"></i>
+                            Andrology Session
+                        </div>
+                        <div class="track-chairs">
+                            <span class="chairs-label"><i class="fas fa-chair"></i> Chairpersons:</span>
+                            <span class="chairs-names">Prof. Mohamed Aboeleinen, Prof. Abdelrahman Zahran, Prof. Maged Ragab, Prof. Tarek Abdelbaky, Prof. Hafez Mannaa</span>
+                        </div>
+                    </div>
+
+                    <div class="sessions-grid">
+                        <div class="session-card" data-track="andrology" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>03:00 - 03:15</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge andrology">Lecture</div>
+                                <h3 class="session-title">Does The Size Really Matter?</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Dr. Ahmed Saber
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="andrology" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>03:15 - 03:30</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge andrology">Lecture</div>
+                                <h3 class="session-title">Small Sized Penis in Psychiatry Clinic</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Prof. Mona Reda
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="andrology" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>03:30 - 03:45</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge andrology">Lecture</div>
+                                <h3 class="session-title">The Dilemma of Buried Penis</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Dr. Khaled Almekaty
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="andrology" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>03:45 - 04:00</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge andrology">Lecture</div>
+                                <h3 class="session-title">Penile Augmentation Outcome</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Prof. Amr Abdelraheem
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="andrology" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>04:00 - 04:15</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge andrology">Lecture</div>
+                                <h3 class="session-title">Small Sized Penis in Pediatric Population</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Prof. Osama Elgamal
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card session-break" data-track="andrology">
+                            <div class="session-time">
+                                <i class="fas fa-coffee"></i>
+                                <span>04:15 - 04:30</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge break">Break</div>
+                                <h3 class="session-title">Coffee Break & Networking</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-coffee"></i>
+                                    Sponsored by Eva Pharma
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Endo-Urology Session -->
+                <div class="session-track" data-track="endo-urology">
+                    <div class="track-header">
+                        <div class="track-badge endo-urology">
+                            <i class="fas fa-microscope"></i>
+                            Endo-Urology Session
+                        </div>
+                        <div class="track-chairs">
+                            <span class="chairs-label"><i class="fas fa-chair"></i> Chairpersons:</span>
+                            <span class="chairs-names">Prof. Shawqi El-Abd, Prof. Abd-Elhameed El-Bahnasy, Prof. Mohamed Elshazly, Prof. Mohamed Gaber, Prof. Hamada Nassar</span>
+                        </div>
+                    </div>
+
+                    <div class="sessions-grid">
+                        <div class="session-card" data-track="endo-urology" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>05:00 - 05:15</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge endo-urology">Lecture</div>
+                                <h3 class="session-title">30 Years Journey of ESWL in Tanta Urology Department</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Prof. Hassan El-Tatawy
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="endo-urology" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>05:15 - 05:30</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge endo-urology">Lecture</div>
+                                <h3 class="session-title">Role of Mini-PCNL</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Dr. Ahmed Zoeir
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="endo-urology" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>05:30 - 05:45</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge endo-urology">Lecture</div>
+                                <h3 class="session-title">Role of RIRS</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Dr. Abdalla El-Debeiky
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="endo-urology" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>05:45 - 06:00</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge endo-urology">Lecture</div>
+                                <h3 class="session-title">Robotic PNL: Route to The Future</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Dr. Ahmed Abdelmoteleb
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="endo-urology" data-type="video">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>06:00 - 06:15</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge endo-urology">Video</div>
+                                <h3 class="session-title">Accessory Ureter: Case Presentation</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Dr. Nader El-khamisy
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Opening Ceremony -->
+                <div class="session-track" data-track="ceremony">
+                    <div class="track-header">
+                        <div class="track-badge ceremony">
+                            <i class="fas fa-flag"></i>
+                            Opening Ceremony
+                        </div>
+                    </div>
+
+                    <div class="sessions-grid">
+                        <div class="session-card" data-track="ceremony" data-type="panel">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>06:30 - 07:00</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge ceremony">Ceremony</div>
+                                <h3 class="session-title">Memorial Lecture: History of Tanta Urology Department</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Prof. Mohamed Rasheed
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="ceremony" data-type="panel">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>07:00 - 08:30</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge ceremony">Competition</div>
+                                <h3 class="session-title">Uro-competition for Young Urologists</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-trophy"></i>
+                                    Under supervision of EUA
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="agenda-day" id="day2" data-day="day2">
+                <div class="day-header">
+                    <div class="day-title">
+                        <i class="fas fa-sun"></i>
+                        <h2>Day 2 - Scientific Sessions</h2>
+                    </div>
+                    <div class="day-info">
+                        <span class="day-location"><i class="fas fa-map-marker-alt"></i> Tolip Alexandria Hotel</span>
+                        <span class="day-date-display"><i class="fas fa-calendar"></i> September 6, 2024</span>
+                    </div>
+                </div>
+
+                <!-- Uro-Oncology Session -->
+                <div class="session-track" data-track="oncology">
+                    <div class="track-header">
+                        <div class="track-badge oncology">
+                            <i class="fas fa-dna"></i>
+                            Uro-Oncology Session
+                        </div>
+                        <div class="track-chairs">
+                            <span class="chairs-label"><i class="fas fa-chair"></i> Chairpersons:</span>
+                            <span class="chairs-names">Prof. Osama Abu Farha, Prof. Hasan Abou El-enin, Prof. Ayman Hassan, Prof. Ahmed Gamal Eldeen, Prof. Osama Elashry</span>
+                        </div>
+                    </div>
+
+                    <div class="sessions-grid">
+                        <div class="session-card" data-track="oncology" data-type="panel">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>10:00 - 10:15</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge oncology">Cross-Fire</div>
+                                <h3 class="session-title">Early Radical Cystectomy in BCG Failure Patients</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Prof. Mohamed Radwan
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="oncology" data-type="panel">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>10:15 - 10:30</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge oncology">Cross-Fire</div>
+                                <h3 class="session-title">Alternative Options Still There in BCG Failure Patients</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Prof. Mohamed Elbendary
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="oncology" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>10:30 - 10:45</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge oncology">Lecture</div>
+                                <h3 class="session-title">Partial Nephrectomy in Small Renal Tumors</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Dr. Mohamed Lotfy
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="oncology" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>10:45 - 11:00</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge oncology">Lecture</div>
+                                <h3 class="session-title">Ablative Procedures for Small Renal Tumors</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Dr. Abdalla Homouda
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="oncology" data-type="video">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>11:00 - 11:15</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge oncology">Video</div>
+                                <h3 class="session-title">RCC in Renal Duplex & Video Presentation</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Dr. Alaa Ali Mousa
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="oncology" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>11:15 - 11:30</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge oncology">Lecture</div>
+                                <h3 class="session-title">Role of Renal Biopsy in Small Renal Masses</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Prof. Atef Badawy
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pediatric Urology Session -->
+                <div class="session-track" data-track="pediatric">
+                    <div class="track-header">
+                        <div class="track-badge pediatric">
+                            <i class="fas fa-baby"></i>
+                            Pediatric Urology Session
+                        </div>
+                        <div class="track-chairs">
+                            <span class="chairs-label"><i class="fas fa-chair"></i> Chairpersons:</span>
+                            <span class="chairs-names">Prof. Mohamed Rasheed, Prof. Samir Elgamal, Prof. Osama Elgamal, Prof. Salah Nagla</span>
+                        </div>
+                    </div>
+
+                    <div class="sessions-grid">
+                        <div class="session-card" data-track="pediatric" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>11:30 - 11:45</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge pediatric">Lecture</div>
+                                <h3 class="session-title">Flexible Ureteroscopy in Children</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Prof. Osama Elgamal
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="pediatric" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>11:45 - 12:00</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge pediatric">Lecture</div>
+                                <h3 class="session-title">Updates on Management of Posterior Urethral Valves</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Prof. Samir Elgamal
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="pediatric" data-type="video">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>12:00 - 12:15</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge pediatric">Video</div>
+                                <h3 class="session-title">Laparoscopic Reimplantation (Video)</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Prof. Salah Nagla
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="pediatric" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>12:15 - 12:30</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge pediatric">Lecture</div>
+                                <h3 class="session-title">Endoscopic Injection for Refluxing Ureter</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Dr. Mohamed Elmaadawy
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="session-card" data-track="pediatric" data-type="lecture">
+                            <div class="session-time">
+                                <i class="fas fa-clock"></i>
+                                <span>12:30 - 12:45</span>
+                            </div>
+                            <div class="session-content">
+                                <div class="session-badge pediatric">Case Study</div>
+                                <h3 class="session-title">Wilms Tumour: Unusual Presentation - Case Study</h3>
+                                <p class="session-presenter">
+                                    <i class="fas fa-user-md"></i>
+                                    Dr. Abdelhamid Ali Hassan Khattab
+                                </p>
+                            </div>
+                            <div class="session-actions">
+                                <button class="btn-session-detail" onclick="showSessionDetail(this)">
+                                    <i class="fas fa-info-circle"></i>
+                                    Details
+                                </button>
+                                <button class="btn-add-calendar">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No Sessions Found</h3>
+                <p>Try adjusting your search or filter criteria</p>
+                <button class="btn-clear-search" id="clearSearch">
+                    <i class="fas fa-times"></i>
+                    Clear Search
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Session Detail Modal -->
+    <div class="modal-overlay" id="sessionModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <div class="modal-badge" id="modalBadge">Lecture</div>
+                <h2 id="modalTitle">Session Title</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-info-grid">
+                    <div class="modal-info-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="modalTime">00:00 - 00:00</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fas fa-calendar"></i>
+                        <span id="modalDate">September X, 2024</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="modalLocation">Venue Location</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <i class="fas fa-user-md"></i>
+                        <span id="modalPresenter">Presenter Name</span>
+                    </div>
+                </div>
+                <div class="modal-description">
+                    <h4>Session Description</h4>
+                    <p id="modalDescription">Detailed description of the session content and learning objectives.</p>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-add-calendar-modal">
+                        <i class="fas fa-calendar-plus"></i>
+                        Add to Calendar
+                    </button>
+                    <button class="btn-share-session">
+                        <i class="fas fa-share-alt"></i>
+                        Share Session
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">T</div>
+                    <div class="logo-text">
+                        <span class="logo-title">TSMRC 2026</span>
+                        <span class="logo-subtitle">Tanta University</span>
+                    </div>
+                </a>
+                <p>
+                    Empowering the next generation of medical professionals through 
+                    research, innovation, and the integration of artificial intelligence in healthcare.
+                </p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="index.html#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                    <li><a href="agenda.html"><i class="fas fa-chevron-right"></i> Agenda</a></li>
+                    <li><a href="register.html"><i class="fas fa-chevron-right"></i> Register</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="register.html#abstract"><i class="fas fa-chevron-right"></i> Submit Abstract</a></li>
+                    <li><a href="venue.html"><i class="fas fa-chevron-right"></i> Venue</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Guidelines</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-title">Contact</h4>
+                <ul class="footer-links">
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Tanta University, Egypt
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:info@tsmrc.edu.eg">
+                            <i class="fas fa-envelope"></i>
+                            info@tsmrc.edu.eg
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+201234567890">
+                            <i class="fas fa-phone"></i>
+                            +20 123 456 7890
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tanta Student Medical Research Conference. All rights reserved. | Faculty of Medicine, Tanta University</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/agenda.js"></script>
+</body>
+</html>

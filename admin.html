@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | TSMRC 2026</title>
+    <meta name="description" content="TSMRC 2026 Admin Dashboard - Manage registrations, abstracts, and certificates">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0"></script>    
+    <!-- Chart.js for Statistics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo">
+                    <div class="logo-icon">T</div>
+                    <div class="logo-text">
+                        <span class="logo-title">TSMRC 2026</span>
+                        <span class="logo-subtitle">Admin Panel</span>
+                    </div>
+                </div>
+                <h1>Admin Login</h1>
+                <p>Enter your credentials to access the dashboard</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-envelope"></i>
+                        Email Address
+                    </label>
+                    <input type="email" class="form-input" id="adminEmail" required placeholder="admin@tsmrc.edu.eg">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-lock"></i>
+                        Password
+                    </label>
+                    <input type="password" class="form-input" id="adminPassword" required placeholder="Enter password" autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login to Dashboard
+                </button>
+
+                <div class="login-error" id="loginError" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Invalid credentials. Please try again.</span>
+                </div>
+            </form>
+
+            <div class="login-footer">
+                <p><i class="fas fa-shield-alt"></i> Secure admin access powered by Supabase</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">T</div>
+                    <div class="logo-text">
+                        <span class="logo-title">TSMRC 2026</span>
+                        <span class="logo-subtitle">Admin</span>
+                    </div>
+                </a>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-section="registrations">
+                    <i class="fas fa-users"></i>
+                    <span>Registrations</span>
+                    <span class="nav-badge" id="registrationsBadge">0</span>
+                </a>
+                <a href="#" class="nav-item" data-section="abstracts">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Abstracts</span>
+                    <span class="nav-badge" id="abstractsBadge">0</span>
+                </a>
+                <a href="#" class="nav-item" data-section="certificates">
+                    <i class="fas fa-certificate"></i>
+                    <span>Certificates</span>
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="btn-logout" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="top-bar-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+
+                <div class="top-bar-actions">
+                    <button class="btn-icon" id="notificationsBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name" id="adminName">Admin</span>
+                            <span class="user-role">Super Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section class="content-section active" id="dashboardSection">
+                <div class="section-header">
+                    <h1>Dashboard Overview</h1>
+                    <p>Conference statistics and quick actions</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon attendees">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalAttendees">0</h3>
+                            <p>Total Attendees</p>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>12% from last week</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon abstracts">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalAbstracts">0</h3>
+                            <p>Abstract Submitted</p>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>8% from last week</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="pendingAbstracts">0</h3>
+                            <p>Pending Review</p>
+                        </div>
+                        <div class="stat-change neutral">
+                            <i class="fas fa-minus"></i>
+                            <span>Requires attention</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon certificates">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="certificatesSent">0</h3>
+                            <p>Certificates Sent</p>
+                        </div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>Ready to send</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Registration Trends</h3>
+                            <button class="btn-chart-filter">
+                                <i class="fas fa-calendar"></i>
+                                Last 7 Days
+                            </button>
+                        </div>
+                        <canvas id="registrationChart"></canvas>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Abstract by Track</h3>
+                        </div>
+                        <canvas id="abstractTrackChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="activity-card">
+                    <div class="card-header">
+                        <h3>Recent Registrations</h3>
+                        <a href="#" class="btn-view-all" data-section="registrations">View All</a>
+                    </div>
+                    <div class="activity-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>University</th>
+                                    <th>Email</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentRegistrations">
+                                <tr>
+                                    <td colspan="5" class="loading">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="actions-grid">
+                        <button class="action-btn" onclick="showSection('registrations')">
+                            <i class="fas fa-users"></i>
+                            <span>Manage Registrations</span>
+                        </button>
+                        <button class="action-btn" onclick="showSection('abstracts')">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Review Abstracts</span>
+                        </button>
+                        <button class="action-btn" onclick="showSection('certificates')">
+                            <i class="fas fa-certificate"></i>
+                            <span>Send Certificates</span>
+                        </button>
+                        <button class="action-btn" id="exportDataBtn">
+                            <i class="fas fa-download"></i>
+                            <span>Export Data</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Registrations Section -->
+            <section class="content-section" id="registrationsSection">
+                <div class="section-header">
+                    <div>
+                        <h1>Attendee Registrations</h1>
+                        <p>Manage all conference registrations</p>
+                    </div>
+                    <div class="section-actions">
+                        <button class="btn-export" id="exportRegistrationsBtn">
+                            <i class="fas fa-file-excel"></i>
+                            Export Excel
+                        </button>
+                        <button class="btn-export" id="exportPDFBtn">
+                            <i class="fas fa-file-pdf"></i>
+                            Export PDF
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="registrationSearch" placeholder="Search by name, email, or university...">
+                    </div>
+                    <div class="filter-group">
+                        <select id="universityFilter" class="filter-select">
+                            <option value="all">All Universities</option>
+                            <option value="Tanta University">Tanta University</option>
+                            <option value="Cairo University">Cairo University</option>
+                            <option value="Ain Shams University">Ain Shams University</option>
+                            <option value="Alexandria University">Alexandria University</option>
+                            <option value="Mansoura University">Mansoura University</option>
+                        </select>
+                        <select id="statusFilter" class="filter-select">
+                            <option value="all">All Status</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="pending">Pending</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                        <select id="yearFilter" class="filter-select">
+                            <option value="all">All Years</option>
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                            <option value="5th Year">5th Year</option>
+                            <option value="6th Year">6th Year</option>
+                            <option value="Intern">Intern</option>
+                            <option value="Graduate">Graduate</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Registrations Table -->
+                <div class="data-table-card">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" id="selectAll">
+                                    </th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>University</th>
+                                    <th>Year</th>
+                                    <th>Phone</th>
+                                    <th>Registered</th>
+                                    <th>Certificate</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="registrationsTable">
+                                <tr>
+                                    <td colspan="9" class="loading">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                        Loading registrations...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination" id="registrationsPagination">
+                        <button class="btn-page" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="page-info">Showing 1-10 of 0</span>
+                        <button class="btn-page" disabled>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Abstracts Section -->
+            <section class="content-section" id="abstractsSection">
+                <div class="section-header">
+                    <div>
+                        <h1>Abstract Submissions</h1>
+                        <p>Review and manage research abstracts</p>
+                    </div>
+                    <div class="section-actions">
+                        <button class="btn-export" id="exportAbstractsBtn">
+                            <i class="fas fa-file-excel"></i>
+                            Export All
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Abstract Stats -->
+                <div class="abstract-stats">
+                    <div class="stat-badge submitted">
+                        <span class="stat-number" id="submittedCount">0</span>
+                        <span class="stat-label">Submitted</span>
+                    </div>
+                    <div class="stat-badge under-review">
+                        <span class="stat-number" id="underReviewCount">0</span>
+                        <span class="stat-label">Under Review</span>
+                    </div>
+                    <div class="stat-badge accepted">
+                        <span class="stat-number" id="acceptedCount">0</span>
+                        <span class="stat-label">Accepted</span>
+                    </div>
+                    <div class="stat-badge rejected">
+                        <span class="stat-number" id="rejectedCount">0</span>
+                        <span class="stat-label">Rejected</span>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters-bar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="abstractSearch" placeholder="Search by title, author, or track...">
+                    </div>
+                    <div class="filter-group">
+                        <select id="trackFilter" class="filter-select">
+                            <option value="all">All Tracks</option>
+                            <option value="AI in Medical Imaging">AI in Medical Imaging</option>
+                            <option value="Drug Discovery & Development">Drug Discovery & Development</option>
+                            <option value="Clinical Decision Support">Clinical Decision Support</option>
+                            <option value="Cardiovascular AI">Cardiovascular AI</option>
+                            <option value="Neuroscience & AI">Neuroscience & AI</option>
+                            <option value="Digital Health & Telemedicine">Digital Health & Telemedicine</option>
+                        </select>
+                        <select id="reviewStatusFilter" class="filter-select">
+                            <option value="all">All Status</option>
+                            <option value="submitted">Submitted</option>
+                            <option value="under_review">Under Review</option>
+                            <option value="accepted">Accepted</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Abstracts Grid -->
+                <div class="abstracts-grid" id="abstractsGrid">
+                    <div class="loading-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading abstracts...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certificates Section -->
+            <section class="content-section" id="certificatesSection">
+                <div class="section-header">
+                    <h1>Certificate Management</h1>
+                    <p>Generate and send attendance certificates</p>
+                </div>
+
+                <!-- Certificate Stats -->
+                <div class="cert-stats">
+                    <div class="cert-stat-card">
+                        <div class="cert-stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="cert-stat-info">
+                            <h3 id="eligibleForCert">0</h3>
+                            <p>Eligible Attendees</p>
+                        </div>
+                    </div>
+                    <div class="cert-stat-card">
+                        <div class="cert-stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="cert-stat-info">
+                            <h3 id="certificatesGenerated">0</h3>
+                            <p>Certificates Generated</p>
+                        </div>
+                    </div>
+                    <div class="cert-stat-card">
+                        <div class="cert-stat-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="cert-stat-info">
+                            <h3 id="certificatesSent">0</h3>
+                            <p>Certificates Sent</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bulk Actions -->
+                <div class="bulk-actions-card">
+                    <h3>Bulk Certificate Actions</h3>
+                    <div class="bulk-actions">
+                        <button class="btn-bulk" id="generateAllCertsBtn">
+                            <i class="fas fa-certificate"></i>
+                            Generate All Certificates
+                        </button>
+                        <button class="btn-bulk" id="sendAllCertsBtn">
+                            <i class="fas fa-envelope"></i>
+                            Send All Certificates
+                        </button>
+                        <button class="btn-bulk" id="downloadAllCertsBtn">
+                            <i class="fas fa-download"></i>
+                            Download All as ZIP
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate List -->
+                <div class="data-table-card">
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Attendee</th>
+                                    <th>Email</th>
+                                    <th>University</th>
+                                    <th>Generated</th>
+                                    <th>Sent</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="certificatesTable">
+                                <tr>
+                                    <td colspan="6" class="loading">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="content-section" id="settingsSection">
+                <div class="section-header">
+                    <h1>Dashboard Settings</h1>
+                    <p>Configure your admin preferences</p>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3><i class="fas fa-user"></i> Admin Profile</h3>
+                        <form id="adminProfileForm">
+                            <div class="form-group">
+                                <label class="form-label">Admin Name</label>
+                                <input type="text" class="form-input" id="adminNameInput" value="Conference Admin">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" id="adminEmailInput" value="admin@tsmrc.edu.eg" disabled>
+                            </div>
+                            <button type="submit" class="btn-save">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-bell"></i> Notifications</h3>
+                        <div class="toggle-setting">
+                            <label class="toggle-label">
+                                <span>Email notifications for new registrations</span>
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-setting">
+                            <label class="toggle-label">
+                                <span>Email notifications for new abstracts</span>
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-setting">
+                            <label class="toggle-label">
+                                <span>Daily summary reports</span>
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-database"></i> Data Management</h3>
+                        <div class="data-actions">
+                            <button class="btn-data" id="backupDataBtn">
+                                <i class="fas fa-download"></i>
+                                Backup All Data
+                            </button>
+                            <button class="btn-data" id="clearCacheBtn">
+                                <i class="fas fa-trash"></i>
+                                Clear Cache
+                            </button>
+                            <button class="btn-data danger" id="resetDataBtn">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Reset All Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Abstract Detail Modal -->
+    <div class="modal-overlay" id="abstractModal">
+        <div class="modal-content modal-large">
+            <button class="modal-close" id="abstractModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <div class="modal-badge" id="modalAbstractTrack">Track</div>
+                <h2 id="modalAbstractTitle">Abstract Title</h2>
+            </div>
+            <div class="modal-body">
+                <div class="abstract-info-grid">
+                    <div class="info-item">
+                        <label>Corresponding Author</label>
+                        <p id="modalAbstractAuthor">-</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Email</label>
+                        <p id="modalAbstractEmail">-</p>
+                    </div>
+                    <div class="info-item">
+                        <label>University</label>
+                        <p id="modalAbstractUniversity">-</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Study Type</label>
+                        <p id="modalAbstractStudyType">-</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Presentation Type</label>
+                        <p id="modalAbstractPresentation">-</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Submission Date</label>
+                        <p id="modalAbstractDate">-</p>
+                    </div>
+                </div>
+
+                <div class="abstract-sections">
+                    <div class="abstract-section">
+                        <h4>Background</h4>
+                        <p id="modalAbstractBackground">-</p>
+                    </div>
+                    <div class="abstract-section">
+                        <h4>Methods</h4>
+                        <p id="modalAbstractMethods">-</p>
+                    </div>
+                    <div class="abstract-section">
+                        <h4>Results</h4>
+                        <p id="modalAbstractResults">-</p>
+                    </div>
+                    <div class="abstract-section">
+                        <h4>Conclusion</h4>
+                        <p id="modalAbstractConclusion">-</p>
+                    </div>
+                </div>
+
+                <div class="abstract-file">
+                    <h4>Uploaded File</h4>
+                    <a href="#" class="file-link" id="modalAbstractFile" target="_blank">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Download Abstract PDF</span>
+                    </a>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn-review" id="btnAcceptAbstract">
+                        <i class="fas fa-check"></i>
+                        Accept
+                    </button>
+                    <button class="btn-review reject" id="btnRejectAbstract">
+                        <i class="fas fa-times"></i>
+                        Reject
+                    </button>
+                    <button class="btn-review pending" id="btnPendingAbstract">
+                        <i class="fas fa-clock"></i>
+                        Mark as Pending
+                    </button>
+                </div>
+
+                <div class="reviewer-notes">
+                    <label>Reviewer Notes (Optional)</label>
+                    <textarea id="reviewerNotes" placeholder="Add notes for the author..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Detail Modal -->
+    <div class="modal-overlay" id="registrationModal">
+        <div class="modal-content">
+            <button class="modal-close" id="registrationModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2>Registration Details</h2>
+            </div>
+            <div class="modal-body" id="registrationModalBody">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Custom JS -->
+    <script src="js/admin.js"></script>
+</body>
+</html>
